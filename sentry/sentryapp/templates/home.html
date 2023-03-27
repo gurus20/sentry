@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<style>
+    * {
+        font-size: 13px;
+    }
+</style>
+
+<div class="container-fluid mt-3">
+    <div class="text-center">
+        <h3>Usage Monitor</h3>
+    </div>
+
+    <div class="my-3">
+        <table class="table table-striped border">
+            <thead>
+                <tr>
+                    <th style="width:80px">PID</th>
+                    <th style="width:200px">Name</th>
+                    <th style="width:180px">Snap Time</th>
+                    <th style="width:80px">Memory</th>
+                    <th style="width:80px">CPU</th>
+                    <th style="width:80px">Username</th>
+                    <th style="width:80px">Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ i.pid }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.snap_time }}</td>
+                    <td>{{ i.memory }} %</td>
+                    <td>{{ i.cpu }}</td>
+                    <td>{{ i.username }}</td>
+                    <td>{{ i.command | slice:'100'}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 import psutil
 from datetime import datetime
 
-from db import connect_to_db, save_snapshot_to_db
+from db import save_snapshot_to_db
 
 
 class Usage:    
@@ -29,14 +29,10 @@ class Usage:
             self.name,
             self.snap_time,
             self.memory_percent,
-            self.cmdline,
+            str(self.cmdline),
             self.cpu_percent,
             self.username
         )
-
-
-def get_data_from_database(conn):
-    return
 
 
 def usage_snapshot(exclude):
@@ -63,7 +59,7 @@ def usage_snapshot(exclude):
     
 
 if __name__ == "__main__":
-    exclude = ['chrome', 'code', 'bash', ]
-    conn = connect_to_db()
-    usage = usage_snapshot(exclude)
-    save_snapshot_to_db(conn, usage)
+    exclude = ['chrome', 'code', 'bash']
+    usage = usage_snapshot(exclude)    
+    save_snapshot_to_db(usage)
+
